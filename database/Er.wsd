@@ -1,0 +1,30 @@
+@startuml er-diagram
+' entityの「○E」を消す
+hide circle
+
+entity "users" as users {
+  id
+  --
+  name
+  email
+  password
+  created_at
+  updated_at
+}
+
+entity "foods" as foods {
+    id
+    --
+    user_id<<FK>>
+    name
+    calories
+    protein
+    fat
+    carbohydrate
+    per_grams
+    created_at
+    updated_at
+}
+
+users ||--o{ foods
+@enduml
