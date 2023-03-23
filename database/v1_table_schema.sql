@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
     password character varying(255) NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE(email)
 );
 
 COMMENT ON TABLE users IS 'ユーザテーブル';
@@ -24,7 +25,7 @@ COMMENT ON COLUMN users.updated_at IS '更新日時';
 
 -- foods
 CREATE TABLE IF NOT EXISTS foods (
-    id bigserial,
+    id character varying(26),
     user_id character varying(26) NOT NULL,
     name character varying(255) NOT NULL,
     calories numeric(4,1) NOT NULL,
@@ -34,8 +35,7 @@ CREATE TABLE IF NOT EXISTS foods (
     per_grams numeric(4,1) NOT NULL,
     created_at timestamp with time zone NOT NULL,
     updated_at timestamp with time zone NOT NULL,
-    PRIMARY KEY(id),
-    UNIQUE(id, user_id),
+    PRIMARY KEY(id, user_id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
